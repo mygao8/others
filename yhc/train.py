@@ -133,10 +133,10 @@ optimizer = torch.optim.Adam(model.parameters(), lr=lr_temp, betas=(0.9, 0.999),
 
 
 
-filename = 'C:/Users/YANG Haochen/Desktop/lux_2/34k/lux3_train/class_train_5_3.csv'
+filename = './class_train_5_3_34k_lux2.csv'
 dataset = FaceLandmarksDataset(filename,symbol,upsample)
 train_loader = torch.utils.data.DataLoader(dataset, batch_size=252, shuffle=True)
-epochnum = 60
+epochnum = 40
 loss_b = 50
 loss_save=[]
 for i in range(epochnum):
@@ -157,7 +157,7 @@ for i in range(epochnum):
             loss_save.append(loss.item())
             if loss.item()<loss_b:
                 loss_b = loss.item()
-                filename = 'C:/Users/YANG Haochen/Desktop/lux_2/34k/lux3_train/modelb_34_lux3.pkl'	      
+                filename = './modelb_34_lux2.pkl'	      
                 torch.save(model.state_dict(), filename) 
                 
 
@@ -180,12 +180,12 @@ for i in range(epochnum):
 #    if i==90:
 #        optimizer = torch.optim.SGD(model.parameters(), lr=1e-5, momentum=0.3)    #, momentum=0.9
     
-filename = 'C:/Users/YANG Haochen/Desktop/lux_2/34k/lux3_train/modelb_34_lux3.pkl'	    
+filename = './modelb_34_lux2.pkl'	    
 torch.save(model.state_dict(), filename)    
 
  	
 p = pd.DataFrame(loss_save)
-filename = 'C:/Users/YANG Haochen/Desktop/lux_2/34k/lux3_train/loss_save_34_lux3.csv'
+filename = './loss_save_34_lux2.csv'
 p.to_csv(filename)        
 		    
 
